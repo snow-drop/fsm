@@ -1,3 +1,8 @@
+Before building the application, make sure that you have the following prerequisites installed:
+
+* JDK 8
+* Maven
+
 To install the dependencies, run the following command in the root project directory:
 
     mvn clean install
