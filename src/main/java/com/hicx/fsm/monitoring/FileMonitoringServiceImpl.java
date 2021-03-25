@@ -43,6 +43,19 @@ public class FileMonitoringServiceImpl implements FileMonitoringService {
 
     private void processNewFile(String filePath) throws IOException {
         printFileStatistics(filePath);
+        moveProcessedFile(filePath);
+    }
+
+    private void moveProcessedFile(String filePath) throws IOException {
+        File processedFile = new File(filePath);
+        File rootFolder = processedFile.getParentFile();
+        Path processedFolderPath = Paths.get(rootFolder.getPath(), "processed");
+        boolean processedFolderNotExisting = !Files.exists(processedFolderPath);
+        if (processedFolderNotExisting) {
+            Files.createDirectories(processedFolderPath);
+        }
+        Path newProcessedFilePath = Paths.get(processedFolderPath.toString(), processedFile.getName());
+        Files.move(processedFile.toPath(), newProcessedFilePath, StandardCopyOption.REPLACE_EXISTING);
     }
 
     private void printFileStatistics(String filePath) throws IOException {
