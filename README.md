@@ -11,6 +11,6 @@ To package the app as executable jar, run the following command:
 
     mvn clean package
 
-It will generate a file named `fsm-1.0-shaded.jar`. To run the app, type
+It will generate a file named `fsm-1.0-shaded.jar` in `target/` folder. To run the app, type
 
     java -jar fsm-1.0-shaded.jar <folder-path-to-monitor>
