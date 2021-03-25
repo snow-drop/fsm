@@ -13,4 +13,4 @@ To package the app as executable jar, run the following command:
 
 It will generate a file named `fsm-1.0-shaded.jar`. To run the app, type
 
-    java -jar fsm-1.0-shaded.jar <directory-to-monitor-path>
+    java -jar fsm-1.0-shaded.jar <folder-path-to-monitor>
