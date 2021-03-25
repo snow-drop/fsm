@@ -1,0 +1,21 @@
+KISS (Keep It Simple Stupid)
+When a program grows in size, the complexity of the code tends to increase. This would give you a hard time debugging, as debugging complex code is a gruesome task. Nobody loves to maintain complex code. This principle states that you should always keep your code simple. If you have a complex piece of code, always try to break it into smaller more maintainable code.
+It is harder to write simple clean code than to write complex BS. The more you grow as a developer, the cleaner and more meaningful your code should become.
+
+YAGNI (You Aren’t Gonna Need It)
+There are at times where you should be prepared for the future, but not in programming. People tend to write code that they may need in the future but not at the moment. These types of code increase the size of your program unnecessarily, as the written code is never implemented. Even more, most of the programmers never use this code in the future. This habit of programmers bloats your code unnecessarily.
+This principle states not to implement something until it is necessary. This is a piece of advice every developer should follow.
+
+DRY (Don’t Repeat Yourself)
+This principle is crucial for writing simple and easy-to-modify code. Repeated code is a common mistake among programmers. This principle states that a piece of code should be implemented in just one place in the source code. If you notice the same chunk of code being written over and over again, you’re breaking this principle.
+The opposite of DRY code is WET code: write everything twice.
+You can create a common function or abstract your code to avoid any repetition in your code.
+
+SoC (Separation of Concerns)
+SoC principle is all about minding your own business — literally. This principle advises you to partition your complex code into different sections or domains. Each section is independent of each other, and that’s why each section can be tackled independently. Also, it becomes easier to maintain, update, and reuse the code.
+One good example of SoC is the MVC Architecture. This separates a program into three areas: the data (model), the logic (controller), and what the end-user sees (view). MVC is heavily implemented in modern-day frameworks.
+
+Avoid Premature Optimization
+We would all prefer our code to be optimized. But this principle states that you should not optimize your algorithm at the early stage of development.
+This principle is quite similar to the YAGNI principle. The difference is that the YAGNI principle speaks about the tendency to implement unnecessary functions while this principle speaks about the tendency to speed up algorithms before they are necessary.
+The problem with premature optimization is that you can never really know where a program’s bottlenecks will be until after the fact. You can guess, of course, and sometimes you may even be right. But more often than not, you’ll waste valuable time trying to speed up a function that isn’t as slow as you think or doesn’t get called as often as you’d expect.
