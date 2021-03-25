@@ -4,9 +4,18 @@ import java.util.List;
 
 public class FileStatistics {
 
+    private String fileName;
     private int wordCount;
     private int dotCount;
     private List<String> mostUsedWords;
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 
     public int getWordCount() {
         return wordCount;

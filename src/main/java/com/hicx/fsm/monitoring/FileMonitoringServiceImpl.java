@@ -3,6 +3,7 @@ package com.hicx.fsm.monitoring;
 import com.hicx.fsm.statistics.FileStatistics;
 import com.hicx.fsm.statistics.FileStatisticsService;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 
@@ -18,24 +19,35 @@ public class FileMonitoringServiceImpl implements FileMonitoringService {
     public void monitor(String directory) throws IOException, InterruptedException {
         System.out.println("Starting file monitoring service at: " + directory + "\n");
         Path path = getPath(directory);
+        processExistingFiles(directory);
         WatchService watchService = FileSystems.getDefault().newWatchService();
         path.register(watchService, StandardWatchEventKinds.ENTRY_CREATE);
         WatchKey watchKey;
         while ((watchKey = watchService.take()) != null) {
             for (WatchEvent<?> event : watchKey.pollEvents()) {
-                processNewFile(event.context().toString(), directory);
+                String filePath = Paths.get(directory, event.context().toString()).toString();
+                processNewFile(filePath);
             }
             watchKey.reset();
         }
     }
 
-    private void processNewFile(String fileName, String rootDirectory) throws IOException {
-        String filePath = Paths.get(rootDirectory, fileName).toString();
-        printFileStatistics(fileName, filePath);
+    private void processExistingFiles(String directory) throws IOException {
+        File[] existingFiles = new File(directory).listFiles();
+        for (File file : existingFiles) {
+            if (file.isFile()) {
+                processNewFile(file.getPath());
+            }
+        }
     }
 
-    private void printFileStatistics(String fileName, String filePath) throws IOException {
+    private void processNewFile(String filePath) throws IOException {
+        printFileStatistics(filePath);
+    }
+
+    private void printFileStatistics(String filePath) throws IOException {
         FileStatistics statistics = fileStatisticsService.getStatistics(filePath);
+        String fileName = Paths.get(filePath).toFile().getName();
         System.out.println("File name: " + fileName);
         System.out.println("Number of words: " + statistics.getWordCount());
         System.out.println("Number of dots: " + statistics.getDotCount());
@@ -48,6 +60,11 @@ public class FileMonitoringServiceImpl implements FileMonitoringService {
         boolean directoryNotExisting = !Files.exists(path);
         if (directoryNotExisting) {
             Files.createDirectories(path);
+        } else {
+            boolean isNotADirectory = !Files.isDirectory(path);
+            if (isNotADirectory) {
+                throw new IllegalArgumentException("Argument is not a directory.");
+            }
         }
         return path;
     }

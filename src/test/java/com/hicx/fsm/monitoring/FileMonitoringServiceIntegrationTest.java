@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class FileMonitoringServiceIntegrationTest {
@@ -31,6 +32,6 @@ class FileMonitoringServiceIntegrationTest {
     private String getTestDirectory() {
         String srcDirectory = System.getProperty("user.dir");
         String testDirectory = "sandbox/";
-        return String.format("%s/%s", srcDirectory, testDirectory);
+        return Paths.get(srcDirectory, testDirectory).toString();
     }
 }

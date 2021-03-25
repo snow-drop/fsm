@@ -3,6 +3,7 @@ package com.hicx.fsm.statistics;
 import com.hicx.fsm.extraction.FileContentExtractionService;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,7 +20,9 @@ public class FileStatisticsServiceImpl implements FileStatisticsService {
     @Override
     public FileStatistics getStatistics(String filePath) throws IOException {
         String content = fileContentExtractionService.getText(filePath);
+        String fileName = Paths.get(filePath).toFile().getName();
         FileStatistics fileStatistics = new FileStatistics();
+        fileStatistics.setFileName(fileName);
         fileStatistics.setWordCount(getWordCount(content));
         fileStatistics.setDotCount(getDotCount(content));
         fileStatistics.setMostUsedWords(getMostUsedWords(content));
