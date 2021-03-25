@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class FileContentExtractionServiceIntegrationTest {
+class FileContentExtractionServiceIntegrationTest {
 
     private FileContentExtractionService fileContentExtractionService;
 

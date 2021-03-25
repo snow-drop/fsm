@@ -12,12 +12,12 @@ import static com.hicx.fsm.extraction.FileTypes.TEXT;
 public class FileContentExtractionServiceImpl implements FileContentExtractionService {
 
     @Override
-    public String getText(String textFilePath) throws IOException {
-        Path filePath = Paths.get(textFilePath);
-        String mimeType = Files.probeContentType(filePath);
+    public String getText(String filePath) throws IOException {
+        Path path = Paths.get(filePath);
+        String mimeType = Files.probeContentType(path);
         StringBuilder content = new StringBuilder();
         if (mimeType.equals(TEXT.getMimeType())) {
-            extractTextFileContent(filePath, content);
+            extractTextFileContent(path, content);
         }
         return content.toString();
     }
