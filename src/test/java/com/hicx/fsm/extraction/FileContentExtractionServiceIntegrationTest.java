@@ -34,6 +34,6 @@ class FileContentExtractionServiceIntegrationTest {
     private String getTestFilePath() {
         String srcDirectory = System.getProperty("user.dir");
         String relativeTextFilePath = "src/test/resources/code-principles.txt";
-        return String.format("%s/%s", srcDirectory, relativeTextFilePath);
+        return Paths.get(srcDirectory, relativeTextFilePath).toString();
     }
 }

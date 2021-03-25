@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -34,6 +35,6 @@ class FileStatisticsServiceIntegrationTest {
     private String getTestFilePath() {
         String srcDirectory = System.getProperty("user.dir");
         String relativeTextFilePath = "src/test/resources/quote.txt";
-        return String.format("%s/%s", srcDirectory, relativeTextFilePath);
+        return Paths.get(srcDirectory, relativeTextFilePath).toString();
     }
 }
